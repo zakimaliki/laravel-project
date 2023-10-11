@@ -8,7 +8,7 @@ Route::get('/', function () {
 });
 
 // Route untuk menampilkan daftar produk
-Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+Route::get('/products', [ProductController::class, 'index'])->name('products.index')->middleware('auth');
 
 // Route untuk menampilkan formulir tambah produk
 Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
@@ -27,3 +27,11 @@ Route::put('/products/{id}', [ProductController::class, 'update'])->name('produc
 
 // Route untuk menghapus produk berdasarkan ID
 Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
