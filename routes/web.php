@@ -7,6 +7,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/products/search', [ProductController::class, 'search'])->name('products.search');
+
 // Route untuk menampilkan daftar produk
 Route::get('/products', [ProductController::class, 'index'])->name('products.index')->middleware('auth');
 

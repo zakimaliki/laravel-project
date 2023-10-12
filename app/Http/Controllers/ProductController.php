@@ -8,10 +8,26 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-    $products = Product::paginate(5); // Menampilkan 10 produk per halaman
-    return view('products.index', compact('products'));
+        $query = $request->input('query');
+        $order = $request->input('order', "name");
+        $sort = $request->input('sort',"asc"); // Nilai default adalah 'asc' jika tidak ada parameter sort atau nilai sort tidak valid
+
+        $products = Product::where($order, 'like', '%'.$query.'%')
+                        ->orderBy($order, $sort)
+                        ->paginate(5);
+
+        return view('products.index', compact('products'));
+    }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query'); // Mendapatkan kata kunci pencarian dari input form
+
+        $products = Product::where('name', 'like', '%'.$query.'%')->paginate(5); // Menampilkan 5 produk per halaman
+
+        return view('products.index', compact('products'));
     }
 
     public function create()
