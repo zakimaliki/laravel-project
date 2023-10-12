@@ -10,8 +10,8 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::all(); // Mengambil semua produk dari tabel 'products'
-        return view('products.index', compact('products'));
+    $products = Product::paginate(5); // Menampilkan 10 produk per halaman
+    return view('products.index', compact('products'));
     }
 
     public function create()
