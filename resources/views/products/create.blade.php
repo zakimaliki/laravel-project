@@ -16,6 +16,7 @@
             <label for="stock">Stok:</label>
             <input type="number" class="form-control" id="stock" name="stock" required>
         </div>
+        <br>
         <button type="submit" class="btn btn-primary">Simpan</button>
     </form>
 @endsection

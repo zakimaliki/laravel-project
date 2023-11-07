@@ -17,6 +17,7 @@
             <label for="stock">Stok:</label>
             <input type="number" class="form-control" id="stock" name="stock" value="{{ $product->stock }}" required>
         </div>
+        <br>
         <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
     </form>
 @endsection
