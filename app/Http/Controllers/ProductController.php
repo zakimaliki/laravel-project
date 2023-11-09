@@ -21,10 +21,7 @@ class ProductController extends Controller
         $sort = $request->input('sort', 'asc');
 
         $ipAddress = $request->ip(); // Mendapatkan alamat IP dari request
-
-        // Mendapatkan data pengguna yang sedang terotentikasi
-        $user = Auth::user();
-
+        $user = Auth::user(); // Mendapatkan data pengguna yang sedang terotentikasi
         // Menulis pesan log
         Log::info('User Name ' . $user->name . ' accessed: ' . $request->url());
         Log::info('Index method called with query: ' . $query . ', order: ' . $order . ', sort: ' . $sort. 'user IP:'.$ipAddress);
