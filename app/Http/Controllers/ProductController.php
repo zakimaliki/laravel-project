@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+
 
 
 
@@ -218,5 +220,32 @@ class ProductController extends Controller
         Log::info('Product deleted with ID: ' . $id);
 
         return response()->json(['message' => 'Produk berhasil dihapus'], 200);
+    }
+
+ public function upload(Request $request)
+    {
+        // Periksa apakah file ada dalam permintaan
+        if ($request->hasFile('file')) {
+            // Dapatkan file dari permintaan
+            $file = $request->file('file');
+
+            // Tentukan direktori penyimpanan di dalam storage/app/public
+            $uploadPath = storage_path('app/public/uploads');
+
+            // Bangun nama unik untuk file
+            $fileName = uniqid() . '.' . $file->getClientOriginalExtension();
+
+            // Pindahkan file ke direktori penyimpanan
+            $file->move($uploadPath, $fileName);
+
+            // Proses lain yang mungkin Anda perlukan
+
+            // Simpan path file di dalam storage
+            $filePath = 'uploads/' . $fileName;
+
+            return response()->json(['message' => 'File uploaded successfully', 'file_path' => $filePath]);
+        }
+
+        return response()->json(['message' => 'No file provided'], 400);
     }
 }

@@ -4,6 +4,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 
+Route::post('/products/upload', [ProductController::class, 'upload']);
+
+
 // Route untuk menampilkan daftar produk
 Route::get('/list-product', [ProductController::class, 'list_product']);
 

@@ -7,6 +7,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::post('/products/upload', [ProductController::class, 'upload']);
+
+
 Route::get('/products/search', [ProductController::class, 'search'])->name('products.search');
 
 // Route untuk menampilkan daftar produk

@@ -9,5 +9,5 @@ class Product extends Model
 {
     use HasFactory;
     protected $table = 'products'; // Menyatakan nama tabel yang terkait dengan model ini
-    protected $fillable = ['name', 'price', 'stock']; // Kolom-kolom yang dapat diisi (fillable) oleh pengguna
+    protected $fillable = ['name', 'price', 'stock', 'image']; // Kolom-kolom yang dapat diisi (fillable) oleh pengguna
 }
